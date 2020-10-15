@@ -1,9 +1,19 @@
-/**
- * @format
- */
-
+import React from 'react';
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
+import ApolloClient from 'apollo-boost';
 
-AppRegistry.registerComponent(appName, () => App);
+import {ApolloProvider} from 'react-apollo';
+
+const Client = () => {
+  const client = new ApolloClient({uri: 'http://localhost:3000/graphql'});
+
+  return (
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  );
+};
+
+AppRegistry.registerComponent(appName, () => Client);

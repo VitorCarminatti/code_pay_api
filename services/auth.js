@@ -1,35 +1,36 @@
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from '@react-native-community/async-storage';
 
-const key = "@user";
+export const currentUser = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@user');
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const isLoggedIn = async () => {
   try {
-    const value = await AsyncStorage.getItem("key");
-    if (value !== null) {
-      return true;
-    }
+    const jsonValue = await AsyncStorage.getItem('@user');
+    return jsonValue != null ? true : false;
   } catch (error) {
+    console.log(error);
     return false;
   }
 };
 
 export const logout = async () => {
   try {
-    await AsyncStorage.removeItem(key);
+    await AsyncStorage.removeItem('@user');
   } catch (error) {
     console.log(error);
   }
 };
 
-export const login = async (email, password) => {
+export const login = async (id, firstName) => {
   try {
-    const value = await AsyncStorage.setItem(
-      key,
-      JSON.stringify(email, password)
-    );
-    if (value !== null) {
-      console.log("logado com sucesso");
-    }
+    const jsonValue = JSON.stringify({id, firstName});
+    await AsyncStorage.setItem('@user', jsonValue);
   } catch (error) {
     return console.log(error);
   }
