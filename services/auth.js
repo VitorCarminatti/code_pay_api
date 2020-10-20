@@ -27,9 +27,9 @@ export const logout = async () => {
   }
 };
 
-export const login = async (id, firstName) => {
+export const login = async (token, firstName, role) => {
   try {
-    const jsonValue = JSON.stringify({id, firstName});
+    const jsonValue = JSON.stringify({token, firstName, role});
     await AsyncStorage.setItem('@user', jsonValue);
   } catch (error) {
     return console.log(error);

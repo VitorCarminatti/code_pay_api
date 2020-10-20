@@ -7,7 +7,7 @@ import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from 'react-apollo';
 
 const Client = () => {
-  const client = new ApolloClient({uri: 'http://localhost:3000/graphql'});
+  const client = new ApolloClient({uri: 'http://192.168.1.101:3000/graphql'});
 
   return (
     <ApolloProvider client={client}>

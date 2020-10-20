@@ -22,8 +22,9 @@ const SIGN_IN = gql`
       success
       errors
       user {
-        id
+        authenticationToken
         firstName
+        role
       }
     }
   }
@@ -40,7 +41,11 @@ const SignIn = ({navigation}) => {
   const handleSubmit = () => {
     signIn({variables: {email, password}});
     if (result) {
-      login(result.user.id, result.user.firstName);
+      login(
+        result.user.authenticationToken,
+        result.user.firstName,
+        result.user.role,
+      );
     } else {
       Alert.alert(
         'Falha no login',
