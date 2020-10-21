@@ -3,7 +3,7 @@ import {View, Button, Text} from 'react-native';
 import {logout, currentUser} from '../../services/auth';
 import Cliente from '../Cliente';
 import Caixa from '../Caixa';
-import Bar from '../Bar';
+import Produtos from '../Produtos';
 
 const Home = () => {
   const [nome, setNome] = useState('');
@@ -23,7 +23,7 @@ const Home = () => {
       case 'CAIXA':
         return <Caixa />;
       case 'BAR':
-        return <Bar />;
+        return <Produtos />;
       default:
         break;
     }

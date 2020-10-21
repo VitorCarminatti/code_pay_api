@@ -16,17 +16,18 @@ const CASH_OUT = gql`
   }
 `;
 
-const Bar = () => {
-  const [valor, setValor] = useState('');
+const Bar = ({route}) => {
+  const {preco} = route.params;
+
+  const [valor, setValor] = useState(preco);
   const [scan, setScan] = useState(false);
 
   const [cashIn, {data}] = useMutation(CASH_OUT);
   const errors = _.get(data, 'cashOut.errors', null);
 
   const onSuccess = (e) => {
-    cashIn({variables: {valor, token: e.data}});
+    cashIn({variables: {valor: valor.replace(/,/g, '.'), token: e.data}});
     setScan(false);
-    console.log(errors);
     if (errors) {
       Alert.alert('Falha no pagamento', 'Saldo insuficiente', [{text: 'OK'}], {
         cancelable: false,
