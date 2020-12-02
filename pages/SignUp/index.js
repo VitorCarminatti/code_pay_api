@@ -25,8 +25,9 @@ export const SIGN_UP = gql`
       success
       errors
       user {
-        id
+        authenticationToken
         firstName
+        role
       }
     }
   }

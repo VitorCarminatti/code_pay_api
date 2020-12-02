@@ -28,9 +28,12 @@ const Caixa = () => {
 
   return (
     <View>
-      <Text>Informe o valor do crédito e escaneie o código do cliente</Text>
+      <Text style={{alignSelf: 'center'}}>
+        Informe o valor do crédito e escaneie o código do cliente
+      </Text>
       <Input
         placeholder="Valor"
+        keyboardType="numeric"
         value={valor}
         onChangeText={setValor}
         autoCapitalize="none"
@@ -39,17 +42,17 @@ const Caixa = () => {
       {scan && (
         <QRCodeScanner
           onRead={onSuccess}
-          flashMode={RNCamera.Constants.FlashMode.auto}
+          flashMode={RNCamera.Constants.FlashMode.off}
           cameraStyle={{
-            height: 300,
+            height: 200,
             width: 300,
             alignSelf: 'center',
-            marginTop: 50,
+            marginTop: 0,
           }}
         />
       )}
 
-      <Button title="Scanear" onPress={() => setScan(!scan)} />
+      {!scan && <Button title="Escanear" onPress={() => setScan(!scan)} />}
     </View>
   );
 };

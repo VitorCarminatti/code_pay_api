@@ -37,9 +37,12 @@ const Bar = ({route}) => {
 
   return (
     <View>
-      <Text>Informe o valor do débito e escaneie o código do cliente</Text>
+      <Text style={{alignSelf: 'center'}}>
+        Informe o valor do débito e escaneie o código do cliente
+      </Text>
       <Input
         placeholder="Valor"
+        keyboardType="numeric"
         value={valor}
         onChangeText={setValor}
         autoCapitalize="none"
@@ -58,7 +61,7 @@ const Bar = ({route}) => {
         />
       )}
 
-      <Button title="Scanear" onPress={() => setScan(!scan)} />
+      {!scan && <Button title="Escanear" onPress={() => setScan(!scan)} />}
     </View>
   );
 };
